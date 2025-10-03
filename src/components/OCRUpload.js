@@ -1,26 +1,43 @@
-import React from "react";
-import Tesseract from "tesseract.js";
+import React, { useState } from "react";
+import api from "../api/api";
 
 const OCRUpload = ({ onExtract }) => {
-  const handleImage = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-    const { data } = await Tesseract.recognize(file, "eng");
-    const text = data.text;
-
-    // Very simple parser for demo purposes
-    const parsed = {};
-    if (text.match(/Age:\s*(\d+)/i)) parsed.age = text.match(/Age:\s*(\d+)/i)[1];
-    if (/Smoker:\s*yes/i.test(text)) parsed.smoking = "high";
-    if (/Smoker:\s*no/i.test(text)) parsed.smoking = "none";
-    if (text.match(/Exercise:\s*(\w+)/i)) parsed.exercise = text.match(/Exercise:\s*(\w+)/i)[1].toLowerCase();
-    if (text.match(/Diet:\s*(.+)/i)) parsed.diet = text.match(/Diet:\s*(.+)/i)[1];
-
-    onExtract(parsed);
+  const handleFileChange = (e) => {
+    setImage(e.target.files[0]);
   };
 
-  return <input type="file" accept="image/*" onChange={handleImage} />;
+  const handleExtractText = () => {
+    if (!image) return;
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    onExtract(formData);
+  };
+
+  return (
+    <div className="card">
+      <div className="card-body">
+        <h2 className="card-title">Upload Medical/Lifestyle Form (OCR)</h2>
+        <div className="mb-3">
+          <input className="form-control" type="file" onChange={handleFileChange} />
+        </div>
+        <button className="btn btn-secondary" onClick={handleExtractText} disabled={!image || loading}>
+          {loading ? (
+            <>
+              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span className="visually-hidden">Loading...</span>
+            </>
+          ) : (
+            "Extract Text"
+          )}
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default OCRUpload;

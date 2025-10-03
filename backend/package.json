@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@google/genai": "^1.21.0",
+    "@google/generative-ai": "^0.24.1",
+    "@langchain/google-genai": "^0.2.18",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "langchain": "^0.3.35",
+    "multer": "^2.0.2",
+    "node-tesseract-ocr": "^2.2.1",
+    "nodemon": "^3.1.10",
+    "tesseract.js": "^6.0.1"
+  }
+}

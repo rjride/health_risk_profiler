@@ -1,22 +1,65 @@
 import React from "react";
 
 const ResultDisplay = ({ result }) => {
-  if (!result) return null;
-
-  if (result.status === "incomplete_profile") {
-    return <div className="error">❌ {result.reason}</div>;
+  if (!result) {
+    return null;
   }
 
+  const getRiskLevelClass = (level) => {
+    switch (level) {
+      case 'low':
+        return 'success';
+      case 'medium':
+        return 'warning';
+      case 'high':
+        return 'danger';
+      default:
+        return 'secondary';
+    }
+  };
+
   return (
-    <div className="result">
-      <h3>Risk Level: {result.risk_level}</h3>
-      <p>Score: {result.score}</p>
-      <p><b>Reasons:</b> {result.reasons?.join(", ")}</p>
-      <p><b>Recommendations:</b></p>
-      <ul>
-        {result.recommendations?.map((rec, i) => <li key={i}>{rec}</li>)}
-      </ul>
-      <p><b>Summary:</b> {result.summary}</p>
+    <div className="card">
+      <div className="card-body">
+        <h3 className="card-title">AI Health Report</h3>
+        <p>
+          <b>Risk Level:</b>{' '}
+          <span className={`badge bg-${getRiskLevelClass(result.risk_level)}`}>
+            {result.risk_level}
+          </span>
+        </p>
+        <p>
+          <b>Score:</b>{' '}
+          <span className="badge bg-info">{result.score}</span>
+        </p>
+
+        {result.missing_fields?.length > 0 && (
+          <div>
+            <h4>Missing Fields</h4>
+            <ul className="list-group">
+              {result.missing_fields.map((f, i) => <li key={i} className="list-group-item">{f}</li>)}
+            </ul>
+          </div>
+        )}
+
+        {result.risk_factors?.length > 0 && (
+          <div className="mt-3">
+            <h4>Risk Factors</h4>
+            <ul className="list-group">
+              {result.risk_factors.map((f, i) => <li key={i} className="list-group-item">{f}</li>)}
+            </ul>
+          </div>
+        )}
+
+        {result.recommendations?.length > 0 && (
+          <div className="mt-3">
+            <h4>Recommendations</h4>
+            <ul className="list-group">
+              {result.recommendations.map((r, i) => <li key={i} className="list-group-item">{r}</li>)}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

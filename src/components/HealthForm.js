@@ -1,73 +1,65 @@
 import React, { useState } from "react";
 
 const HealthForm = ({ onSubmit }) => {
-  const [form, setForm] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     age: "",
-    smoking: "",
-    exercise: "",
-    diet: "",
-    sleep: "",
-    stress: "",
+    smoker: "no",
+    exercise: "never",
+    diet: "balanced",
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(form);
+    onSubmit(formData);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form">
-      <input type="text" name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
-      <input type="number" name="age" placeholder="Age" value={form.age} onChange={handleChange} required />
-
-      <label>Smoking:</label>
-      <select name="smoking" value={form.smoking} onChange={handleChange}>
-        <option value="">--Select--</option>
-        <option value="none">None</option>
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
-
-      <label>Exercise:</label>
-      <select name="exercise" value={form.exercise} onChange={handleChange}>
-        <option value="">--Select--</option>
-        <option value="never">Never</option>
-        <option value="sometimes">Sometimes</option>
-        <option value="daily">Daily</option>
-      </select>
-
-      <label>Diet:</label>
-      <select name="diet" value={form.diet} onChange={handleChange}>
-        <option value="">--Select--</option>
-        <option value="healthy">Healthy</option>
-        <option value="moderate">Moderate</option>
-        <option value="high sugar">High sugar</option>
-      </select>
-
-      <label>Sleep:</label>
-      <select name="sleep" value={form.sleep} onChange={handleChange}>
-        <option value="">--Select--</option>
-        <option value="poor">Poor</option>
-        <option value="average">Average</option>
-        <option value="good">Good</option>
-      </select>
-
-      <label>Stress:</label>
-      <select name="stress" value={form.stress} onChange={handleChange}>
-        <option value="">--Select--</option>
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
-
-      <button type="submit">Analyze</button>
-    </form>
+    <div className="card">
+      <div className="card-body">
+        <h2 className="card-title">Health Risk Profiler</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Name:</label>
+            <input name="name" className="form-control" value={formData.name} onChange={handleChange} />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Age:</label>
+            <input name="age" className="form-control" value={formData.age} onChange={handleChange} />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Smoker:</label>
+            <select name="smoker" className="form-select" value={formData.smoker} onChange={handleChange}>
+              <option value="no">No</option>
+              <option value="occasionally">Occasionally</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Exercise:</label>
+            <select name="exercise" className="form-select" value={formData.exercise} onChange={handleChange}>
+              <option value="never">Never</option>
+              <option value="sometimes">Sometimes</option>
+              <option value="daily">Daily</option>
+            </select>
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Diet:</label>
+            <select name="diet" className="form-select" value={formData.diet} onChange={handleChange}>
+              <option value="balanced">Balanced</option>
+              <option value="high sugar">High Sugar</option>
+              <option value="high fat">High Fat</option>
+              <option value="junk">Mostly Junk</option>
+            </select>
+          </div>
+          <button type="submit" className="btn btn-primary">Analyze</button>
+        </form>
+      </div>
+    </div>
   );
 };
 
