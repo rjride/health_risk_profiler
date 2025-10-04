@@ -83,5 +83,5 @@ An intelligent web application that analyzes health-related information from a f
 2.  **OCR Upload:**
     *   Click the "Choose File" button to select an image of a document containing your health information.
     *   Click the "Extract Text" button to trigger the OCR process and get your health risk profile.
-## demo video
-*video link: "https://drive.google.com/file/d/1VIU_UvQLEJd5car0LYKKwnw8x-qiVXdR/view?usp=sharing"
+## Demo Video
+*Video Link: "https://drive.google.com/file/d/1VIU_UvQLEJd5car0LYKKwnw8x-qiVXdR/view?usp=sharing"
