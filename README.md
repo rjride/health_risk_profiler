@@ -41,23 +41,19 @@ An intelligent web application that analyzes health-related information from a f
     ```bash
     git clone <repository-url>
     ```
-2.  **Navigate to the project directory:**
-    ```bash
-    cd health-app
-    ```
-3.  **Install frontend dependencies:**
+2.  **Install frontend dependencies:**
     ```bash
     npm install
     ```
-4.  **Navigate to the backend directory:**
+3.  **Navigate to the backend directory:**
     ```bash
     cd backend
     ```
-5.  **Install backend dependencies:**
+4.  **Install backend dependencies:**
     ```bash
     npm install
     ```
-6.  **Create a `.env` file in the `backend` directory and add your Gemini API key:**
+5.  **Create a `.env` file in the `backend` directory and add your Gemini API key:**
     ```
     GEMINI_API_KEY=your-api-key
     ```
@@ -72,7 +68,7 @@ An intelligent web application that analyzes health-related information from a f
     *   The backend will be running on `http://localhost:5000`.
 
 2.  **Start the frontend application:**
-    *   In a new terminal, navigate to the `health-app` directory and run:
+    *   In a new terminal,run the following command since the frontend runs directly without any separation:
         ```bash
         npm start
         ```
@@ -87,3 +83,5 @@ An intelligent web application that analyzes health-related information from a f
 2.  **OCR Upload:**
     *   Click the "Choose File" button to select an image of a document containing your health information.
     *   Click the "Extract Text" button to trigger the OCR process and get your health risk profile.
+## demo video
+*video link: "https://drive.google.com/file/d/1VIU_UvQLEJd5car0LYKKwnw8x-qiVXdR/view?usp=sharing"
